@@ -1,5 +1,5 @@
 import { NetworkRequests } from "@services";
-import { ClientNetworkCredentials } from "@models"
+import { ClientNetworkCredentials, ILogin, INetworkBody, ISignUpPostBody } from "@models"
 
 
 export default class NetworkHandler extends NetworkRequests {
@@ -17,7 +17,7 @@ export default class NetworkHandler extends NetworkRequests {
       return NetworkHandler.instance;
     }
 
-    public async networkAction(actionName: string, body?: object, headers?: object){
+    public async networkAction(actionName: string, body: any, headers?: object){
 
       if(this.clientNetworkCredentials){
         throw Error("Client's network credentials state is null!")
@@ -25,20 +25,27 @@ export default class NetworkHandler extends NetworkRequests {
         
       switch(actionName){
 
-        case this.NHActions.LOGIN:
-          return this.loginRequest(body, )
-          break
+        case this.NHActions.LOGIN: {
+          const loginBody: ILogin = body
+          const loginResponse = await this.loginRequest(loginBody)
+          return loginResponse
+        }
 
-        case this.NHActions.SIGN_UP:
-          break
+        case this.NHActions.SIGN_UP: {
+          const signUpBody: ISignUpPostBody = body
+          const signUpResponse = await this.signUpRequest(signUpBody)
+          return signUpResponse
+        }
 
-        default:
+        default: {
           throw Error("No Network Action recieved!")
+        }
       }
     }
 
-
-
+    public setCredentialState(networkCredentials: ClientNetworkCredentials){
+      this.clientNetworkCredentials = networkCredentials
+    }
   }
   
 

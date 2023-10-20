@@ -1,5 +1,5 @@
 import { ILogin, IUserDbModel, ISignUpPostBody, ClientNetworkCredentials } from '@models';
-import { NHActions } from '@enums';
+import { NHActions } from '@constants';
 import axios from 'axios';
 
 export class NetworkRequests {
@@ -20,7 +20,7 @@ export class NetworkRequests {
         return this.clientNetworkCredentials?.baseApiUrl + '/' + action
     }
 
-    public loginRequest = async (loginInfo: ILogin): Promise<IUserDbModel | null> => {
+    protected loginRequest = async (loginInfo: ILogin): Promise<IUserDbModel | null> => {
 
         const apiUrl = this.prepareApiUrl(this.NHActions.LOGIN)
 
@@ -38,7 +38,7 @@ export class NetworkRequests {
         }
     }
 
-    public signUpRequest = async (signUpInfo: ISignUpPostBody): Promise<IUserDbModel | null> => {
+    protected signUpRequest = async (signUpInfo: ISignUpPostBody): Promise<IUserDbModel | null> => {
 
         const apiUrl = this.prepareApiUrl(this.NHActions.SIGN_UP)
 
@@ -56,7 +56,7 @@ export class NetworkRequests {
         }
     }
 
-    public async getBooksExample(bookId: number){
+    protected async getBooksExample(bookId: number){
 
         const apiUrl = this.prepareApiUrl(this.NHActions.SIGN_UP)
 

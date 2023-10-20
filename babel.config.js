@@ -24,7 +24,7 @@ module.exports = {
           '@navigations': './src/navigations',
           '@assets': './src/assets',
           '@root': './',
-          '@enums': './src/enums'
+          '@constants': './src/constants'
         },
       },
     ],

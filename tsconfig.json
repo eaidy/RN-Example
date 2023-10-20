@@ -12,7 +12,7 @@
       "@abstract": ["./src/abstract"],
       "@assets": ["./src/assets"],
       "@root": ["./"],
-      "@enums": ["./src/enums"]
+      "@constants": ["./src/constants"]
     },
     "resolveJsonModule": true,
   },
