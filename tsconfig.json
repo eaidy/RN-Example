@@ -12,7 +12,8 @@
       "@abstract": ["./src/abstract"],
       "@assets": ["./src/assets"],
       "@root": ["./"],
-      "@constants": ["./src/constants"]
+      "@constants": ["./src/constants"],
+      "@context": ["./src/context"]
     },
     "resolveJsonModule": true,
   },

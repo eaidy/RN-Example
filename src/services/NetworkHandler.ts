@@ -1,8 +1,8 @@
 import { NetworkRequests } from "@services";
-import { ClientNetworkCredentials, ILogin, INetworkBody, ISignUpPostBody } from "@models"
+import { ClientNetworkCredentials, ILogin, ISignUpPostBody } from "@models"
 
 
-export default class NetworkHandler extends NetworkRequests {
+export class NetworkHandler extends NetworkRequests {
 
     private static instance: NetworkHandler | null = null;
   
@@ -43,8 +43,12 @@ export default class NetworkHandler extends NetworkRequests {
       }
     }
 
-    public setCredentialState(networkCredentials: ClientNetworkCredentials){
+    public setNetworkState(networkCredentials: ClientNetworkCredentials){
       this.clientNetworkCredentials = networkCredentials
+    }
+
+    public neutralizeNetworkState(){
+      this.clientNetworkCredentials = null
     }
   }
   

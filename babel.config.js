@@ -24,7 +24,8 @@ module.exports = {
           '@navigations': './src/navigations',
           '@assets': './src/assets',
           '@root': './',
-          '@constants': './src/constants'
+          '@constants': './src/constants',
+          '@context': './src/context'
         },
       },
     ],

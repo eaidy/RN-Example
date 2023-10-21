@@ -1,14 +1,14 @@
-export interface ClientCredentials {
+export type ClientCredentials = {
     name: string;
     phone: string;
     email: string;
     institution: string;
     role: string;
     institutionId: string;
-}
+} | undefined | null
 
-export interface ClientNetworkCredentials {
+export type ClientNetworkCredentials = {
     token: string | null;
     deviceId: string;
     baseApiUrl: string;
-}
+} | undefined | null
