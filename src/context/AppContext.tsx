@@ -2,7 +2,7 @@ import { createContext, useState } from 'react';
 import { NetworkHandler } from '@services';
 import { ClientCredentials } from '@models';
 
-interface AppContextType {
+export interface AppContextType {
   networkHandler: NetworkHandler | null;
   clientCredentials: ClientCredentials | null;
   appTheme: string | null;
