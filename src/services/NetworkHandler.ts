@@ -1,6 +1,5 @@
-import { NetworkRequests } from "@services";
+import { NetworkRequests } from "./NetworkRequests";
 import { ClientNetworkCredentials, ILogin, ISignUpPostBody } from "@models"
-
 
 export class NetworkHandler extends NetworkRequests {
 
@@ -19,8 +18,8 @@ export class NetworkHandler extends NetworkRequests {
 
     public async networkAction(actionName: string, body: any, headers?: object){
 
-      if(this.clientNetworkCredentials){
-        throw Error("Client's network credentials state is null!")
+      if(!this.clientNetworkCredentials){
+        throw new Error("Client's network credentials state is null!")
       }
         
       switch(actionName){
@@ -34,6 +33,7 @@ export class NetworkHandler extends NetworkRequests {
         case this.NHActions.SIGN_UP: {
           const signUpBody: ISignUpPostBody = body
           const signUpResponse = await this.signUpRequest(signUpBody)
+          console.log("Sign Up Action!")
           return signUpResponse
         }
 
@@ -49,6 +49,7 @@ export class NetworkHandler extends NetworkRequests {
 
     public neutralizeNetworkState(){
       this.clientNetworkCredentials = null
+      console.log("Neturalized!")
     }
   }
   

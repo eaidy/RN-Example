@@ -20,7 +20,7 @@ const Login = ({ navigation }: any) => {
     return (
         <>
             <Pressable
-                onPress={() => navigation.navigate("Main")}
+                onPress={() => navigation.navigate("SignUp")}
             >
                 <Text>
                     Click

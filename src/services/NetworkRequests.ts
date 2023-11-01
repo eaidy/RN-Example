@@ -55,20 +55,4 @@ export class NetworkRequests {
             return null;
         }
     }
-
-    protected async getBooksExample(bookId: number){
-
-        const apiUrl = this.prepareApiUrl(this.NHActions.SIGN_UP)
-
-        try {
-            const response = await axios.post(apiUrl, bookId, { headers: this.AUTHORIZED_HEADERS });
-    
-            const data: IUserDbModel = response.data;
-            return response.data;
-    
-        } catch (error) {
-            console.log(error);
-            return null;
-        }
-    }
 }

@@ -6,6 +6,7 @@ import { useContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppContext } from 'src/context/AppContext';
 import { ClientCredentials } from '@models';
+import { appConfig } from '@constants';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,12 @@ const Container = () => {
 
     useEffect(() => {
           setRememberedLoginState()
+          appContext.networkHandler?.setNetworkState({
+            token: "",
+            deviceId: "",
+            baseApiUrl: appConfig.networkConfig.baseApiUrl
+          })
+          console.log(appContext.networkHandler)
       }, [])
       
     return (

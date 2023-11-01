@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import {
     View,
     TextInput,
@@ -12,13 +12,16 @@ import {
     Platform,
     ScrollView
 } from 'react-native'
-import { signUpRequest } from '../../services/Auth'
 import { CommonActions } from '@react-navigation/native';
 import { trigger } from "react-native-haptic-feedback";
+import { AppContext } from 'src/context/AppContext';
+import { NHActions } from '@constants';
 
 const screenDimensions = Dimensions.get('screen');
 
 const SignUp = ({ navigation }: any) => {
+
+    const networkHandler = useContext(AppContext).networkHandler
 
     const [signUpInfo, setSignUpInfo] = useState({
         firstname: '',
@@ -69,7 +72,7 @@ const SignUp = ({ navigation }: any) => {
                                 color: '#444'
                             }}
                         >
-                            Sign-Up to RNTraining App
+                            Sign-Up to App
                         </Text>
                     </View>
                     <View
@@ -233,7 +236,7 @@ const SignUp = ({ navigation }: any) => {
                         />
                         <View style={styles.validationFeedback}>
                             {
-                                responseValid &&
+                                !responseValid &&
                                 (
                                     <Text style={styles.validationFeedbackText}>
                                         Informations are not valid!
@@ -245,7 +248,8 @@ const SignUp = ({ navigation }: any) => {
                             <Button 
                                 title="Complete Signing Up!"
                                 onPress={ async () => {
-                                    const response: any = await signUpRequest(signUpInfo);
+                                    
+                                    const response: any = await networkHandler?.networkAction(NHActions.TODOS, signUpInfo);
 
                                     if(response){
                                         trigger('notificationSuccess', {
